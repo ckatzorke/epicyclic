@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>epicyclic-server</artifactId>
+		<groupId>net.epicyclic</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>epicyclic-portletcontainerservice</artifactId>
+	<name>epicyclic-portletcontainerservice</name>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+
+		<dependency>
+			<groupId>net.epicyclic</groupId>
+			<artifactId>epicyclic-common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+		<!-- gatein -->
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-portlet</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-mc</artifactId>
+		</dependency>
+		<!-- wci depending on runtime! -->
+		<dependency>
+			<groupId>org.gatein.wci</groupId>
+			<artifactId>wci-tomcat7</artifactId>
+		</dependency>
+		<!-- spring -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-web</artifactId>
+		</dependency>
+
+		<!-- inject -->
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+		</dependency>
+
+		<!-- utilities -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+
+
+		<!-- test -->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.kubek2k</groupId>
+			<artifactId>springockito</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+</project>

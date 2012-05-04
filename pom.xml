@@ -1,0 +1,399 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>net.epicyclic</groupId>
+	<artifactId>epicyclic-server</artifactId>
+	<name>${project.artifactId}</name>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<properties>
+		<spring.version>3.1.1.RELEASE</spring.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<!-- check for latest version at https://repository.jboss.org/nexus/index.html#welcome -->
+		<gatein.common.version>2.0.4-GA</gatein.common.version>
+		<pc.version>2.3.1-GA</pc.version>
+		<wci.version>2.1.1-GA</wci.version>
+	</properties>
+	<repositories>
+		<repository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+			<layout>default</layout>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>never</updatePolicy>
+			</snapshots>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>jboss-public-repository-group</id>
+			<name>JBoss Public Repository Group</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public/</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	<!-- TODO reporting tools -->
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<verbose>true</verbose>
+					<source>1.7</source>
+					<target>1.7</target>
+					<compilerVersion>1.7</compilerVersion>
+					<encoding>UTF-8</encoding>
+					<fork>false</fork>
+					<classpathContainer>org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.7</classpathContainer>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.12</version>
+				<!-- <configuration> -->
+				<!-- <useSystemClassLoader>false</useSystemClassLoader> -->
+				<!-- </configuration> -->
+				<configuration>
+					<excludes>
+						<exclude>**/IntegrationTest*</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-source-plugin</artifactId>
+				<version>2.1.2</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>jar</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-plugin</artifactId>
+				<version>1.1</version>
+			</plugin>
+		</plugins>
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav-jackrabbit</artifactId>
+				<version>2.1</version>
+			</extension>
+		</extensions>
+	</build>
+	<dependencyManagement>
+		<dependencies>
+
+			<!-- Gatein portlet container common -->
+			<dependency>
+				<groupId>org.gatein.common</groupId>
+				<artifactId>common-mc</artifactId>
+				<version>${gatein.common.version}</version>
+				<scope>compile</scope>
+			</dependency>
+			<!-- gatein webcontainer integration, pc, wsrp -->
+			<!-- wci depending on runtime! -->
+			<dependency>
+				<groupId>org.gatein.wci</groupId>
+				<artifactId>wci-tomcat7</artifactId>
+				<version>${wci.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gatein.pc</groupId>
+				<artifactId>pc-api</artifactId>
+				<version>${pc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gatein.pc</groupId>
+				<artifactId>pc-portlet</artifactId>
+				<version>${pc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gatein.pc</groupId>
+				<artifactId>pc-controller</artifactId>
+				<version>${pc.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gatein.pc</groupId>
+				<artifactId>pc-mc</artifactId>
+				<version>2.2.0-GA</version>
+			</dependency>
+			<dependency>
+				<groupId>org.gatein.common</groupId>
+				<artifactId>common-logging</artifactId>
+				<version>${gatein.common.version}</version>
+			</dependency>
+
+
+
+			<!-- spring -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-jdbc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-tx</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-orm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-beans</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-context-support</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-core</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aop</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-aspects</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-asm</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-web</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-webmvc</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-expression</artifactId>
+				<version>${spring.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-core</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-config</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-taglibs</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-ldap</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-web</artifactId>
+				<version>${spring.security.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>cglib</groupId>
+				<artifactId>cglib-nodep</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+
+
+			<!-- utilities -->
+			<dependency>
+				<groupId>javax.inject</groupId>
+				<artifactId>javax.inject</artifactId>
+				<version>1</version>
+			</dependency>
+
+			<dependency>
+				<groupId>commons-lang</groupId>
+				<artifactId>commons-lang</artifactId>
+				<version>2.6</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.0.1</version>
+			</dependency>
+			<!-- jamon, must be provided, so the webapp can use the same values -->
+			<dependency>
+				<groupId>com.jamonapi</groupId>
+				<artifactId>jamon</artifactId>
+				<version>2.73</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- logging -->
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.5.6</version>
+			</dependency>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-log4j12</artifactId>
+				<version>1.5.6</version>
+			</dependency>
+
+
+			<!-- servlet container -->
+			<!-- container stuff -->
+			<dependency>
+				<artifactId>javax.servlet-api</artifactId>
+				<groupId>javax.servlet</groupId>
+				<version>3.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet.jsp</groupId>
+				<artifactId>jsp-api</artifactId>
+				<version>2.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.el</groupId>
+				<artifactId>el-api</artifactId>
+				<version>2.2</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>javax.servlet</groupId>
+				<artifactId>jstl</artifactId>
+				<version>1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>javax.portlet</groupId>
+				<artifactId>portlet-api</artifactId>
+				<version>2.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- test -->
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.10</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-test</artifactId>
+				<version>${spring.version}</version>
+				<scope>test</scope>
+			</dependency>
+
+			<dependency>
+				<groupId>org.mockito</groupId>
+				<artifactId>mockito-all</artifactId>
+				<version>1.9.0-rc1</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.kubek2k</groupId>
+				<artifactId>springockito</artifactId>
+				<version>1.0.4</version>
+				<scope>test</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	<dependencies>
+
+		<!-- some excludes <dependency> <groupId>javax.activation</groupId> <artifactId>activation</artifactId> 
+			<version>1.1.1</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>javax.mail</groupId> <artifactId>mail</artifactId> 
+			<version>1.4</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-codec</groupId> <artifactId>commons-codec</artifactId> 
+			<version>1.4</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-collections</groupId> <artifactId>commons-collections</artifactId> 
+			<version>3.2.1</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-dbcp</groupId> <artifactId>commons-dbcp</artifactId> 
+			<version>1.4</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-httpclient</groupId> <artifactId>commons-httpclient</artifactId> 
+			<version>3.1</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-lang</groupId> <artifactId>commons-lang</artifactId> 
+			<version>2.6</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-logging</groupId> <artifactId>commons-logging</artifactId> 
+			<version>1.1.1</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>commons-pool</groupId> <artifactId>commons-pool</artifactId> 
+			<version>1.5.5</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>geronimo-spec</groupId> <artifactId>geronimo-spec-javamail</artifactId> 
+			<version>1.3.1-rc5</version> <type>jar</type> <scope>provided</scope> </dependency> 
+			<dependency> <groupId>geronimo-spec</groupId> <artifactId>geronimo-spec-jms</artifactId> 
+			<version>1.1-rc4</version> <type>jar</type> <scope>provided</scope> </dependency> -->
+
+
+	</dependencies>
+	<developers>
+		<developer>
+			<id>ckatzorke</id>
+			<name>Christian Katzorke</name>
+			<email>ckatzorke@googlemail.com</email>
+		</developer>
+	</developers>
+	<modules>
+		<module>epicyclic-common</module>
+		<module>epicyclic-portletcontainerservice</module>
+		<module>epicyclic-portletinvocation</module>
+		<module>epicyclic-war</module>
+	</modules>
+	<description>Epicyclic - Server side. This is the server side implementation of the epicyclic gears project.</description>
+</project>
