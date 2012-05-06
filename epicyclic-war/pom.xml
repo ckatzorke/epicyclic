@@ -46,6 +46,10 @@
 			<groupId>cglib</groupId>
 			<artifactId>cglib-nodep</artifactId>
 		</dependency>
+			<dependency>
+			<groupId>org.gatein.wci</groupId>
+			<artifactId>wci-tomcat7</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>net.epicyclic</groupId>
 			<artifactId>epicyclic-portletcontainerservice</artifactId>

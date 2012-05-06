@@ -31,7 +31,7 @@
 		<!-- wci depending on runtime! -->
 		<dependency>
 			<groupId>org.gatein.wci</groupId>
-			<artifactId>wci-tomcat7</artifactId>
+			<artifactId>wci-wci</artifactId>
 		</dependency>
 		<!-- spring -->
 		<dependency>

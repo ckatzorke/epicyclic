@@ -116,6 +116,11 @@
 				<scope>compile</scope>
 			</dependency>
 			<!-- gatein webcontainer integration, pc, wsrp -->
+			<dependency>
+				<groupId>org.gatein.wci</groupId>
+				<artifactId>wci-wci</artifactId>
+				<version>${wci.version}</version>
+			</dependency>
 			<!-- wci depending on runtime! -->
 			<dependency>
 				<groupId>org.gatein.wci</groupId>

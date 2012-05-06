@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.epicyclic.common.PageLayout;
 import net.epicyclic.common.PortletWindowDefinition;
-import net.epicyclic.events.GearsEventControllerContext;
+import net.epicyclic.events.EpicyclicEventControllerContext;
 import net.epicyclic.portletcontainer.PortletContainerService;
 
 import org.gatein.common.io.Serialization;
@@ -37,7 +37,7 @@ public class EpicyclicPortletControllerContext extends AbstractPortletController
 
 	private final PortletContainerService portletContainerService;
 
-	private final GearsEventControllerContext eventControllerContext;
+	private final EpicyclicEventControllerContext eventControllerContext;
 	private final StateControllerContext stateControllerContext;
 	private final Serialization<PortletPageNavigationalState> serialization;
 
@@ -46,7 +46,7 @@ public class EpicyclicPortletControllerContext extends AbstractPortletController
 		super(request, response);
 		this.portletContainerService = portletContainerService;
 		this.pageLayout = pageLayout;
-		this.eventControllerContext = new GearsEventControllerContext(this);
+		this.eventControllerContext = new EpicyclicEventControllerContext(this);
 		this.stateControllerContext = new StateControllerContextImpl(this);
 		this.serialization = new PortletPageNavigationalStateSerialization(stateControllerContext);
 	}

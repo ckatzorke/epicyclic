@@ -22,7 +22,7 @@ import org.gatein.pc.controller.event.PortletWindowEvent;
  * be used outside
  * 
  */
-public class GearsEventControllerContext implements EventControllerContext {
+public class EpicyclicEventControllerContext implements EventControllerContext {
 
 	/** . */
 	private final EpicyclicPortletControllerContext context;
@@ -32,7 +32,7 @@ public class GearsEventControllerContext implements EventControllerContext {
 
 	private final List<EventRoute> roots;
 
-	public GearsEventControllerContext(EpicyclicPortletControllerContext context) {
+	public EpicyclicEventControllerContext(EpicyclicPortletControllerContext context) {
 		this.context = context;
 		this.routings = new LinkedHashMap<PortletWindowEvent, EventRoute>();
 		this.roots = new ArrayList<EventRoute>();
