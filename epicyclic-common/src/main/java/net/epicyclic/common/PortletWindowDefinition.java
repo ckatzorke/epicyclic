@@ -30,7 +30,7 @@ public class PortletWindowDefinition {
    private final String windowId;
 
    /**
-    * the custom preferences for this window. Preferences are defined in Typewriter. If null, the generic preferencesinfo from the
+    * the custom preferences for this window. If null, the generic preferencesinfo from the
     * portletinfo is used
     * */
    private final List<Preference> customPreferences;
