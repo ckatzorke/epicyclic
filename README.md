@@ -21,3 +21,9 @@ all relevant classes necessary to fulfill a portlet request.
 ### war
 
 the web app hosting the ReST controller. Currently targeted to run on tc 7.
+
+## Notes
+
+### Jamon
+
+The com.jamon:jamonapi:2.73 is not available in maven repo. Set the dependency either to 2.4 or download the appropriate library @ http://jamonapi.sourceforge.net/
