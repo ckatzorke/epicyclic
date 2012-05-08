@@ -14,7 +14,7 @@ public class EpicyclicWebAppInitializer implements WebApplicationInitializer {
 	public void onStartup(ServletContext servletContext) {
 		// Create the 'root' Spring application context
 		AnnotationConfigWebApplicationContext appCtx = new AnnotationConfigWebApplicationContext();
-		appCtx.scan("net.epicyclic.server", "net.epicyclic.portletcontainer");
+		appCtx.scan("net.epicyclic.server", "net.epicyclic.portletcontainer", "net.epicyclic.portletinvocation");
 
 		// Manages the lifecycle of the root application context
 		servletContext.addListener(new ContextLoaderListener(appCtx));

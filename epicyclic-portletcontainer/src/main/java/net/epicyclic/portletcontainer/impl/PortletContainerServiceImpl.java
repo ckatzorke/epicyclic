@@ -74,7 +74,10 @@ public class PortletContainerServiceImpl implements PortletContainerService {
 		logger.log(Level.INFO, "* Initializing " + LOG_CLASS);
 		logger.log(Level.INFO, "* PortletContainerService is starting. Initializing local portletInvoker...");
 		// TODO local portlets
-
+		Map<String, Portlet> availablePortlets = getAvailablePortlets();
+		for (String key : availablePortlets.keySet()) {
+			logger.log(Level.INFO, " * " + key);
+		}
 		logger.log(Level.INFO, "* PortletContainerService started...");
 		logger.log(Level.INFO, "*************************************************");
 	}

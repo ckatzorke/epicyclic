@@ -7,8 +7,8 @@
 		<groupId>net.epicyclic</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>epicyclic-portletcontainerservice</artifactId>
-	<name>epicyclic-portletcontainerservice</name>
+	<artifactId>epicyclic-portletcontainer</artifactId>
+	<name>epicyclic-portletcontainer</name>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -22,17 +22,27 @@
 		<!-- gatein -->
 		<dependency>
 			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-mc</artifactId>
+		</dependency>
+		<!-- gatein -->
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
 			<artifactId>pc-portlet</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.gatein.pc</groupId>
-			<artifactId>pc-mc</artifactId>
+			<artifactId>pc-controller</artifactId>
 		</dependency>
-		<!-- wci depending on runtime! -->
 		<dependency>
 			<groupId>org.gatein.wci</groupId>
 			<artifactId>wci-wci</artifactId>
 		</dependency>
+		
+		
 		<!-- spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -53,6 +63,12 @@
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jamonapi</groupId>
+			<artifactId>jamon</artifactId>
+			<scope>provided</scope>
 		</dependency>
 
 

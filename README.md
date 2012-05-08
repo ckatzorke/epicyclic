@@ -10,13 +10,9 @@ Together with a lean ReST controller to the portlet container and a javascript l
 
 common model library
 
-### portletcontainerservice
+### portletcontainer
 
-in conjunction with the gatein wci it facades the access to the portlets and the relevant portlet invokers.
-
-### portletinvocation
-
-all relevant classes necessary to fulfill a portlet request.
+in conjunction with the gatein wci it facades the access to the portlets and the relevant portlet invokers for rendering and execution phases.
 
 ### war
 

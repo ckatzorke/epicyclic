@@ -396,8 +396,7 @@
 	</developers>
 	<modules>
 		<module>epicyclic-common</module>
-		<module>epicyclic-portletcontainerservice</module>
-		<module>epicyclic-portletinvocation</module>
+		<module>epicyclic-portletcontainer</module>
 		<module>epicyclic-war</module>
 	</modules>
 	<description>Epicyclic - Server side. This is the server side implementation of the epicyclic gears project.</description>
