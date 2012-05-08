@@ -28,11 +28,12 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableWebMvc
 public class EpicyclicConfig {
 
-	@Bean
+	@Bean(initMethod = "start", destroyMethod = "stop")
 	public PortletApplicationDeployer portletApplicationDeployer() {
 		PortletApplicationDeployer deployer = new PortletApplicationDeployer();
 		deployer.setServletContainerFactory(servletContainerFactory());
-//		deployer.setContainerPortletInvoker(containerPortletInvoker());
+//		deployer.setServletContainer(servletContainerFactory().getServletContainer());
+		deployer.setContainerPortletInvoker(containerPortletInvoker());
 		return deployer;
 	}
 
