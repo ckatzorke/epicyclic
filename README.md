@@ -16,7 +16,11 @@ in conjunction with the gatein wci it facades the access to the portlets and the
 
 ### war
 
-the web app hosting the ReST controller. Currently targeted to run on tc 7.
+the web app hosting the ReST controller. Currently targeted to run on tc 7 (just put in webapps directory).
+
+### assemble
+
+Assembly project that packages the required server libraries - just build and unpack in Tomcat lib directory.
 
 ## Notes
 

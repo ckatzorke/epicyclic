@@ -32,7 +32,7 @@ public class EpicyclicConfig {
 	public PortletApplicationDeployer portletApplicationDeployer() {
 		PortletApplicationDeployer deployer = new PortletApplicationDeployer();
 		deployer.setServletContainerFactory(servletContainerFactory());
-//		deployer.setServletContainer(servletContainerFactory().getServletContainer());
+		// deployer.setServletContainer(servletContainerFactory().getServletContainer());
 		deployer.setContainerPortletInvoker(containerPortletInvoker());
 		return deployer;
 	}
@@ -45,23 +45,6 @@ public class EpicyclicConfig {
 	@Bean
 	public ServletContainer servletContainer() {
 		return servletContainerFactory().getServletContainer();
-	}
-
-	@Bean
-	public PortletStatePersistenceManagerService portletStatePersistenceManagerService() {
-		return new PortletStatePersistenceManagerService();
-	}
-
-	@Bean
-	public StateManagementPolicyService stateManagementPolicyService() {
-		StateManagementPolicyService stateManagementPolicyService = new StateManagementPolicyService();
-		stateManagementPolicyService.setPersistLocally(true);
-		return stateManagementPolicyService;
-	}
-
-	@Bean
-	StateConverterV0 stateConverter() {
-		return new StateConverterV0();
 	}
 
 	@Bean(name = "ContainerPortletInvoker")
@@ -100,9 +83,11 @@ public class EpicyclicConfig {
 	public PortletInvoker consumerPortletInvoker() {
 		ProducerPortletInvoker producerPortletInvoker = new ProducerPortletInvoker();
 		producerPortletInvoker.setNext(containerPortletInvoker());
-		producerPortletInvoker.setPersistenceManager(portletStatePersistenceManagerService());
-		producerPortletInvoker.setStateConverter(stateConverter());
-		producerPortletInvoker.setStateManagementPolicy(stateManagementPolicyService());
+		producerPortletInvoker.setPersistenceManager(new PortletStatePersistenceManagerService());
+		producerPortletInvoker.setStateConverter(new StateConverterV0());
+		StateManagementPolicyService stateManagementPolicyService = new StateManagementPolicyService();
+		stateManagementPolicyService.setPersistLocally(true);
+		producerPortletInvoker.setStateManagementPolicy(stateManagementPolicyService);
 
 		PortletCustomizationInterceptor portletCustomizationInterceptor = new PortletCustomizationInterceptor();
 		portletCustomizationInterceptor.setNext(producerPortletInvoker);

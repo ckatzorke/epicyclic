@@ -11,7 +11,7 @@
 	<artifactId>epicyclic-war</artifactId>
 	<packaging>war</packaging>
 	<build>
-		<finalName>epicyclic</finalName>
+		<finalName>00-epicyclic</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -47,34 +47,10 @@
 			<artifactId>cglib-nodep</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.gatein.wci</groupId>
-			<artifactId>wci-tomcat7</artifactId>
-			<exclusions>
-				<exclusion>
-					<artifactId>tomcat-servlet-api</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-annotations-api</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-api</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-catalina</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-juli</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-				<exclusion>
-					<artifactId>tomcat-util</artifactId>
-					<groupId>org.apache.tomcat</groupId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-catalina</artifactId>
+			<version>7.0.27</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>net.epicyclic</groupId>
@@ -85,8 +61,121 @@
 					<artifactId>servlet-api</artifactId>
 					<groupId>javax.servlet</groupId>
 				</exclusion>
-
+				<exclusion>
+					<artifactId>activation</artifactId>
+					<groupId>javax.activation</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>ccpp</artifactId>
+					<groupId>javax.ccpp</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>common-common</artifactId>
+					<groupId>org.gatein.common</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jaxb-api</artifactId>
+					<groupId>sun-jaxb</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jboss-unit</artifactId>
+					<groupId>org.jboss.unit</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>log4j</artifactId>
+					<groupId>log4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>pc-api</artifactId>
+					<groupId>org.gatein.pc</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>pc-mc</artifactId>
+					<groupId>org.gatein.pc</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>pc-portlet</artifactId>
+					<groupId>org.gatein.pc</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>portlet-api</artifactId>
+					<groupId>javax.portlet</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
 			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.wci</groupId>
+			<artifactId>wci-wci</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>common-common</artifactId>
+					<groupId>org.gatein.common</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>common-logging</artifactId>
+					<groupId>org.gatein.common</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.wci</groupId>
+			<artifactId>wci-tomcat7</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.common</groupId>
+			<artifactId>common-mc</artifactId>
+			<scope>compile</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>common-logging</artifactId>
+					<groupId>org.gatein.common</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jaxb-api</artifactId>
+					<groupId>sun-jaxb</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jboss-managed</artifactId>
+					<groupId>org.jboss.man</groupId>
+				</exclusion>
+				<exclusion>
+					<artifactId>jboss-metatype</artifactId>
+					<groupId>org.jboss.man</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-controller</artifactId>
+			<exclusions>
+				<exclusion>
+					<artifactId>pc-portlet</artifactId>
+					<groupId>org.gatein.pc</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<artifactId>concurrent</artifactId>
+			<groupId>concurrent</groupId>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.gatein.pc</groupId>
+			<artifactId>pc-mc</artifactId>
 		</dependency>
 	</dependencies>
 </project>
