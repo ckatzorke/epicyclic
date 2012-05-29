@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
+
+	<context:component-scan
+		base-package="net.epicyclic.portletinvocation,net.epicyclic.portletcontainer" />
+
+	<!-- gatein -->
+	<bean name="PortletApplicationDeployer" class="net.epicyclic.deploy.EpicyclicDeployer">
+		<property name="servletContainerFactory" ref="ServletContainerFactory" />
+		<property name="containerPortletInvoker" ref="ContainerPortletInvoker" />
+	</bean>
+
+	<!-- The ServletContainerFactory -->
+	<bean name="ServletContainerFactory" class="org.gatein.wci.impl.DefaultServletContainerFactory"
+		factory-method="getInstance" />
+
+	<!-- The servlet container obtained from the ServletContainerFactory -->
+	<bean name="ServletContainer" factory-bean="ServletContainerFactory"
+		factory-method="getServletContainer" />
+
+
+
+	<!-- local portlet invoker -->
+	<bean name="ConsumerPortletInvoker" class="org.gatein.pc.portlet.PortletInvokerInterceptor">
+		<property name="next" ref="ConsumerCacheInterceptor" />
+	</bean>
+	<bean name="ConsumerCacheInterceptor"
+		class="org.gatein.pc.portlet.aspects.ConsumerCacheInterceptor">
+		<property name="next" ref="PortletCustomizationInterceptor" />
+	</bean>
+	<bean name="PortletCustomizationInterceptor"
+		class="org.gatein.pc.portlet.aspects.PortletCustomizationInterceptor">
+		<property name="next" ref="ProducerPortletInvoker" />
+	</bean>
+	<bean name="ProducerPortletInvoker"
+		class="org.gatein.pc.portlet.state.producer.ProducerPortletInvoker">
+		<property name="next" ref="ContainerPortletInvoker" />
+		<property name="persistenceManager" ref="ProducerPersistenceManager" />
+		<property name="stateManagementPolicy" ref="ProducerStateManagementPolicy" />
+		<property name="stateConverter" ref="ProducerStateConverter" />
+	</bean>
+	<!-- Container stack -->
+	<bean name="ContainerPortletInvoker"
+		class="org.gatein.pc.portlet.container.ContainerPortletInvoker">
+		<property name="next" ref="ValveInterceptor" />
+	</bean>
+
+	<bean name="ValveInterceptor" class="org.gatein.pc.portlet.aspects.ValveInterceptor">
+		<property name="portletApplicationRegistry" ref="PortletApplicationDeployer" />
+		<property name="next" ref="SecureTransportInterceptor" />
+	</bean>
+	<bean name="SecureTransportInterceptor"
+		class="org.gatein.pc.portlet.aspects.SecureTransportInterceptor">
+		<property name="next" ref="ContextDispatcherInterceptor" />
+	</bean>
+	<bean name="ContextDispatcherInterceptor"
+		class="org.gatein.pc.portlet.aspects.ContextDispatcherInterceptor">
+		<property name="servletContainerFactory" ref="ServletContainerFactory" />
+		<property name="next" ref="ProducerCacheInterceptor" />
+	</bean>
+	<bean name="ProducerCacheInterceptor"
+		class="org.gatein.pc.portlet.aspects.ProducerCacheInterceptor">
+		<property name="next" ref="CCPPInterceptor" />
+	</bean>
+	<bean name="CCPPInterceptor" class="org.gatein.pc.portlet.aspects.CCPPInterceptor">
+		<property name="next" ref="RequestAttributeConversationInterceptor" />
+	</bean>
+	<bean name="RequestAttributeConversationInterceptor"
+		class="org.gatein.pc.portlet.aspects.RequestAttributeConversationInterceptor">
+		<property name="next" ref="EventPayloadInterceptor" />
+	</bean>
+	<bean name="EventPayloadInterceptor" class="org.gatein.pc.portlet.aspects.EventPayloadInterceptor">
+		<property name="next" ref="PortletContainerDispatcher" />
+	</bean>
+	<bean name="PortletContainerDispatcher"
+		class="org.gatein.pc.portlet.container.ContainerPortletDispatcher">
+	</bean>
+
+
+	<!-- other container stuff -->
+	<!-- The producer persistence manager -->
+	<bean name="ProducerPersistenceManager"
+		class="org.gatein.pc.portlet.impl.state.producer.PortletStatePersistenceManagerService" />
+
+	<!-- The producer state management policy -->
+	<bean name="ProducerStateManagementPolicy"
+		class="org.gatein.pc.portlet.impl.state.StateManagementPolicyService">
+		<property name="persistLocally" value="true" />
+	</bean>
+
+	<!-- The producer state converter -->
+	<bean name="ProducerStateConverter" class="org.gatein.pc.portlet.impl.state.StateConverterV0" />
+
+</beans>
