@@ -34,6 +34,8 @@
             
             <include>org.jboss.logging:jboss-logging-spi</include>
             <include>org.staxnav:staxnav.core</include>
+            
+            <include>com.jamonapi:jamon</include>
 
          </includes>
       </dependencySet>

@@ -13,7 +13,7 @@
 		base-package="net.epicyclic.portletinvocation,net.epicyclic.portletcontainer" />
 
 	<!-- gatein -->
-	<bean name="PortletApplicationDeployer" class="net.epicyclic.deploy.EpicyclicDeployer">
+	<bean name="PortletApplicationDeployer" class="net.epicyclic.deploy.EpicyclicDeployer" init-method="start" destroy-method="stop">
 		<property name="servletContainerFactory" ref="ServletContainerFactory" />
 		<property name="containerPortletInvoker" ref="ContainerPortletInvoker" />
 	</bean>

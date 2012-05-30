@@ -2,13 +2,22 @@ package net.epicyclic.deploy;
 
 import org.gatein.wci.WebApp;
 
+/**
+ * Placeholder for future use
+ * 
+ * @author Chris
+ * 
+ */
 public class EpicyclicDeployer extends org.gatein.pc.portlet.impl.deployment.PortletApplicationDeployer {
 
 	@Override
 	protected void add(WebApp webApp) {
-		System.out.println(">>>>>>before add");
 		super.add(webApp);
-		System.out.println(">>>>>>after add");
+	}
+
+	@Override
+	public void start() {
+		super.start();
 	}
 
 }

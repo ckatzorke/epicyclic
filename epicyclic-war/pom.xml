@@ -244,5 +244,10 @@
 			<version>2.0.5.GA</version>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>

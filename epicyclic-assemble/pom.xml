@@ -70,7 +70,7 @@
 			<groupId>org.gatein.pc</groupId>
 			<artifactId>pc-controller</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<artifactId>concurrent</artifactId>
 			<groupId>concurrent</groupId>
@@ -121,7 +121,11 @@
 			<groupId>javax.activation</groupId>
 			<artifactId>activation</artifactId>
 		</dependency>
-
+		<dependency>
+			<groupId>com.jamonapi</groupId>
+			<artifactId>jamon</artifactId>
+			<scope>compile</scope>
+		</dependency>
 
 		<dependency>
 			<groupId>net.epicyclic</groupId>
