@@ -12,3 +12,5 @@ target/
 #ignore swp
 *.swp
 
+#ignore svn
+.svn
