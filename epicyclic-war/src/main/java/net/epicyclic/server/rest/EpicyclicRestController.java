@@ -3,6 +3,8 @@ package net.epicyclic.server.rest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.epicyclic.common.Commons;
+import net.epicyclic.common.PageLayout;
 import net.epicyclic.common.PortletWindowDefinition;
 import net.epicyclic.common.rendering.PortletRenderResult;
 import net.epicyclic.portletcontainer.PortletContainerService;
@@ -26,8 +28,12 @@ public class EpicyclicRestController {
 
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public @ResponseBody
-	String test(@RequestParam("app") String app, @RequestParam("portlet") String portletName, HttpServletRequest request, HttpServletResponse response) {
-		PortletWindowDefinition def = new PortletWindowDefinition(portletName, app, "test", null);
+	String test(@RequestParam("epi:app") String app, @RequestParam("epi:portlet") String portletName,
+			@RequestParam("epi:windowid") String windowId, HttpServletRequest request, HttpServletResponse response) {
+		PortletWindowDefinition def = new PortletWindowDefinition(portletName, app, windowId, null);
+		PageLayout pageLayout = new PageLayout();
+		pageLayout.addPortletWindowDefinition(def);
+		request.setAttribute(Commons.REQUEST_ATTR_PAGELAYOUT, pageLayout);
 		PortletRenderResult renderResult = portletInvocationService.render(request, response, def);
 		return renderResult.getFragment().toString();
 	}
