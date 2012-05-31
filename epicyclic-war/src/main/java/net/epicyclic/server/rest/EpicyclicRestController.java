@@ -26,7 +26,7 @@ public class EpicyclicRestController {
 	@Autowired
 	private PortletInvocationService portletInvocationService;
 
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/render", method = RequestMethod.GET)
 	public @ResponseBody
 	String test(@RequestParam("epi:app") String app, @RequestParam("epi:portlet") String portletName,
 			@RequestParam("epi:windowid") String windowId, HttpServletRequest request, HttpServletResponse response) {
