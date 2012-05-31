@@ -28,7 +28,7 @@ public class EpicyclicRestController {
 
 	@RequestMapping(value = "/render", method = RequestMethod.GET)
 	public @ResponseBody
-	String test(@RequestParam("epi:app") String app, @RequestParam("epi:portlet") String portletName,
+	String render(@RequestParam("epi:app") String app, @RequestParam("epi:portlet") String portletName,
 			@RequestParam("epi:windowid") String windowId, HttpServletRequest request, HttpServletResponse response) {
 		PortletWindowDefinition def = new PortletWindowDefinition(portletName, app, windowId, null);
 		PageLayout pageLayout = new PageLayout();
