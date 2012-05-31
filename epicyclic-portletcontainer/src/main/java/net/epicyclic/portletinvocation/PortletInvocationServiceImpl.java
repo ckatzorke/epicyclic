@@ -72,6 +72,7 @@ public class PortletInvocationServiceImpl implements PortletInvocationService {
 			if (portletInfo == null) {
 				throw new PortletIntegrationException("Portlet not found! Check Deployment!");
 			} else {
+				invokeInterceptors(request);
 				final GateinPortletRenderer portletRenderer = new GateinPortletRenderer(portletControllerContext,
 						portletPageNavigationalState, portletInfo, portletWindowDefinition);
 				Monitor renderMon = PortletInvocationUtils.createPortletMonitor(portletWindowDefinition, "render");

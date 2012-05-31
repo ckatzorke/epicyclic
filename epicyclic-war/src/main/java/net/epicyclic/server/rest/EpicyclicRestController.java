@@ -27,7 +27,6 @@ public class EpicyclicRestController {
 	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public @ResponseBody
 	String test(@RequestParam("app") String app, @RequestParam("portlet") String portletName, HttpServletRequest request, HttpServletResponse response) {
-		System.out.println("HÄ?" + portletContainerService.getAvailablePortlets());
 		PortletWindowDefinition def = new PortletWindowDefinition(portletName, app, "test", null);
 		PortletRenderResult renderResult = portletInvocationService.render(request, response, def);
 		return renderResult.getFragment().toString();
