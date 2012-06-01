@@ -27,3 +27,19 @@ Assembly project that packages the required server libraries - just build and un
 ### Jamon
 
 The com.jamon:jamonapi:2.73 is not available in maven repo. Set the dependency either to 2.4 or download the appropriate library @ http://jamonapi.sourceforge.net/
+
+## How to run the container (currently does not work for me -> Portlet not found! Check Deployment! :()
+
+1. Run "mvn clean install" on the project epicyclic-server
+
+2. Download a tomcat 7 version and copy all jar files from epicyclic\epicyclic-assemble\target\epicyclic-assemble-1.0-SNAPSHOT-tomcat70\tc7\lib to the lib directory of your tomcat installation
+
+3. Deploy the war file from the epicyclic-war project and a portlet which you want to test
+
+4. Add privileged="true" to the Context-tag in the server.xml of the tomcat configuration
+   e.g.: <Context docBase="epicyclic-war" path="/epicyclic" reloadable="true" source="org.eclipse.jst.jee.server:epicyclic-war" privileged="true"/>
+
+4. Start Tomcat
+
+5. Call the Rest controller with the parameters of the portlet you deployed
+   e.g.: http://localhost:8080/epicyclic/render?epi:app=test&epi:portlet=test&epi:windowid=uniqueId
