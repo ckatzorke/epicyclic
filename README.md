@@ -28,7 +28,7 @@ Assembly project that packages the required server libraries - just build and un
 
 The com.jamon:jamonapi:2.73 is not available in maven repo. Set the dependency either to 2.4 or download the appropriate library @ http://jamonapi.sourceforge.net/
 
-## How to run the container (currently does not work for me -> Portlet not found! Check Deployment! :()
+## How to run the container
 
 1. Run "mvn clean install" on the project epicyclic-server
 
@@ -41,5 +41,7 @@ The com.jamon:jamonapi:2.73 is not available in maven repo. Set the dependency e
 
 4. Start Tomcat
 
-5. Call the Rest controller with the parameters of the portlet you deployed
-   e.g.: http://localhost:8080/epicyclic/render?epi:app=test&epi:portlet=test&epi:windowid=uniqueId
+5. Call the Rest controller with the parameters of the portlet you deployed (note: epicyclic ships with a simple test portlet, where the following URI example is taken from)
+   http://localhost:8080/epicyclic/render?epi:app=epicyclic&epi:portlet=EpicyclicPortlet&epi:windowid=unique
+   
+   

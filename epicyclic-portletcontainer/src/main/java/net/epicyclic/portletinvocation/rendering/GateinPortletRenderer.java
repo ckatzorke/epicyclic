@@ -65,8 +65,8 @@ public class GateinPortletRenderer {
                }
                result.setFragment(new StringBuffer(frag));
                // test for fragments that are faulty
-               if (ERROR_FRAGMENT_RESOURCE_NOT_AVAILABLE.equals(result.getFragment().substring(0,
-                     ERROR_FRAGMENT_RESOURCE_NOT_AVAILABLE.length()))) {
+               if (result.getFragment() == null || (result.getFragment().length() >= ERROR_FRAGMENT_RESOURCE_NOT_AVAILABLE.length() && ERROR_FRAGMENT_RESOURCE_NOT_AVAILABLE.equals(result.getFragment().substring(0,
+                     ERROR_FRAGMENT_RESOURCE_NOT_AVAILABLE.length())))) {
                   throw new PortletIntegrationException(result.getFragment().toString());
                }
                // in case of xml/xhtml/azportlet, only when aggregation
